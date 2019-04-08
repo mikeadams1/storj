@@ -5,6 +5,7 @@ package kademlia
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/zeebo/errs"
 	"go.uber.org/zap"
@@ -94,7 +95,7 @@ func (dialer *Dialer) FetchPeerIdentity(ctx context.Context, target pb.Node) (_ 
 		return nil, context.Canceled
 	}
 	defer dialer.limit.Unlock()
-
+	fmt.Printf("HERE I AM %s\n", target.Id)
 	conn, err := dialer.dialNode(ctx, target)
 	if err != nil {
 		return nil, err
